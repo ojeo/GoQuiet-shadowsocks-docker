@@ -1,12 +1,20 @@
 version: "3"
 services:
-  ss:
+  ss-server-with-gq:
     build: .
-    container_name: ss
+    container_name: ss-server-with-gq
     environment:
       - OPT_TYPE=SS_SERVER_WITH_GOQUIET
-      - SS_PASSWORD=fangjds
+      - SS_PASSWORD=87654321
       - GQ_KEY=12345678
+      #- GQ_WEBSERVER_ADDRESS=104.193.88.123:443
+      #- GQ_FAST_OPEN=false
+      #- SS_SERVER_PORT=8188
+      #- SS_METHOD=aes-256-cfb
+      #- SS_TIMEOUT=300
+      #- DNS_ADDRS=8.8.8.8,8.8.4.4
     ports:
       - 8188:8188
     restart: always
+    
+    

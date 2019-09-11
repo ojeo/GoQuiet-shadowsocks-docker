@@ -25,7 +25,6 @@ fun_ss_server_with_goquiet()
         \"FastOpen\":$GQ_FAST_OPEN\n\
         }"\
         > /etc/goquiet/gqserver.json
-    cat /etc/goquiet/gqserver.json
     ss-server -p $SS_SERVER_PORT -k $SS_PASSWORD -m $SS_METHOD -t $SS_TIMEOUT -d $DNS_ADDRS -u --plugin /usr/local/bin/gq-server --plugin-opts "/etc/goquiet/gqserver.json"
 }
 
@@ -37,11 +36,6 @@ fun_ss_client()
 fun_goquiet_client()
 {
     echo "goquiet_client"
-    #export SS_LOCAL_HOST=$GQ_LOCAL_HOST
-    #export SS_LOCAL_PORT=$GQ_LOCAL_PORT
-    #export SS_REMOTE_HOST=$GQ_SERVER_ADDRESS
-    #export SS_REMOTE_PORT=$GQ_SERVER_PORT
-    #export SS_PLUGIN_OPTIONS=/etc/goquiet/gqclient.json
     echo -e "{\n\
         \"ServerName\":\"$GQ_SERVER_NAME\",\n\
         \"TicketTimeHint\":$GQ_TICKET_TIME_HINT,\n\
@@ -50,7 +44,6 @@ fun_goquiet_client()
         \"FastOpen\":$GQ_FAST_OPEN\n\
         }"\
         > /etc/goquiet/gqclient.json
-    cat /etc/goquiet/gqclient.json
     /usr/local/bin/gq-client -b $GQ_LOCAL_HOST -l $GQ_LOCAL_PORT -s $GQ_SERVER_ADDRESS -p $GQ_SERVER_PORT -c /etc/goquiet/gqclient.json
 }
 fun_ss_client_with_goquiet()
@@ -64,7 +57,7 @@ fun_ss_client_with_goquiet()
         \"FastOpen\":$GQ_FAST_OPEN\n\
         }"\
         > /etc/goquiet/gqclient.json
-    ss-local -s $SS_SERVER_ADDRESS -p $SS_SERVER_PORT -b $SS_LOCAL_ADDRESS -l $SS_LOCAL_PORT -k $SS_PASSWORD -m $SS_METHOD -t $SS_TIMEOUT -u --plugin /usr/local/bin/gq-client --plugin-opts "/etc/goquiet/gqclient.json" 
+    ss-local -s $GQ_SERVER_ADDRESS -p $GQ_SERVER_PORT -b $SS_LOCAL_ADDRESS -l $SS_LOCAL_PORT -k $SS_PASSWORD -m $SS_METHOD -t $SS_TIMEOUT -u --plugin /usr/local/bin/gq-client --plugin-opts "/etc/goquiet/gqclient.json" 
 }
 
 if [ "$OPT_TYPE" = "SS_SERVER" ]

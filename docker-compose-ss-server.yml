@@ -1,0 +1,16 @@
+version: "3"
+services:
+  ss_server:
+    build: .
+    container_name: ss_server
+    environment:
+      - OPT_TYPE=SS_SERVER
+      - SS_PASSWORD=123456
+      #- SS_SERVER_HOST=0.0.0.0
+      #- SS_SERVER_PORT=8188
+      #- SS_METHOD=aes-256-cfb
+      #- SS_TIMEOUT=300
+      #- DNS_ADDRS=8.8.8.8,8.8.4.4
+    ports:
+      - 8188:8188
+    restart: always

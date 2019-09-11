@@ -1,0 +1,22 @@
+version: "3"
+services:
+  ss-client-with-gq:
+    build: .
+    container_name: ss-client-with-gq
+    environment:
+      - OPT_TYPE=SS_CLIENT_WITH_GOQUIET
+      - GQ_KEY=12345678
+      - GQ_SERVER_ADDRESS=127.0.0.1
+      - SS_PASSWORD=12345678
+      #- GQ_SERVER_NAME=www.baidu.com
+      #- GQ_TICKET_TIME_HINT=3600
+      #- GQ_BROWSER=chrome
+      #- GQ_FAST_OPEN=false
+      #- GQ_SERVER_PORT=8288
+      #- SS_LOCAL_ADDRESS=0.0.0.0
+      #- SS_LOCAL_PORT=8388
+      #- SS_METHOD=aes-256-cfb
+      #- SS_TIMEOUT=300
+    ports:
+      - 8388:8388
+    restart: always
