@@ -1,0 +1,12 @@
+version: "3"
+services:
+  ss:
+    build: .
+    container_name: ss
+    environment:
+      - OPT_TYPE=SS_SERVER_WITH_GOQUIET
+      - SS_PASSWORD=fangjds
+      - GQ_KEY=12345678
+    ports:
+      - 8188:8188
+    restart: always

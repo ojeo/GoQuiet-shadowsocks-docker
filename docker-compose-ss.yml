@@ -1,0 +1,13 @@
+version: "3"
+services:
+  ss_server:
+    build: .
+    container_name: ss_server
+    environment:
+      - OPT_TYPE=SS_SERVER
+      - SS_PASSWORD=fangjds
+      - SS_METHOD=aes-256-cfb
+      - DNS_ADDRS=114.114.114.114
+    ports:
+      - 8188:8188
+    restart: always

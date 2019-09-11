@@ -1,0 +1,14 @@
+version: "3"
+services:
+  gqc:
+    build: .
+    container_name: gqc
+    environment:
+      - OPT_TYPE=GOQUIET_CLIENT
+      - GQ_LOCAL_PORT=8288
+      - GQ_SERVER_ADDRESS=host.docker.internal
+      - GQ_SERVER_PORT=8188
+      - GQ_KEY=12345678
+    ports:
+      - 8288:8288
+    restart: always
